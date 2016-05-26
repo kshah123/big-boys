@@ -18,10 +18,22 @@ public class Play1 extends BasicGameState {
 	}
 	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		
+		lvlOneMap = new Image("res/levelMap/lvlOneMap.png");
+		Image[] walkUp = {new Image("res/sprites/penaisBack1.png"), new Image("res/sprites/penaisBack2.png")};
+		Image[] walkDown = {new Image("res/sprites/penaisFront1.png"), new Image("res/sprites/penaisFront2.png")};
+		Image[] walkLeft = {new Image("res/sprites/penaisLeft1.png"), new Image("res/sprites/penaisLeft2.png")};
+		Image[] walkRight = {new Image("res/sprites/penaisRight1.png"), new Image("res/sprites/penaisRight2.png")};
+
+		movingUp = new Animation(walkUp, duration, false);
+		movingDown = new Animation(walkDown, duration, false);
+		movingLeft = new Animation(walkLeft, duration, false);
+		movingRight = new Animation(walkRight, duration, false);
+		penai = movingDown;
+
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics gfx) throws SlickException {
+		gfx.drawImage(lvlOneMap, 0, 0);
 	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {

@@ -6,7 +6,7 @@ import org.lwjgl.input.*;
 
 public class Game extends StateBasedGame{
 	
-	public static final String gameName = "Big Boys: The Monty Adventure";
+	public static final String gameName = "Big Boys: The Plate";
 	public static final int menu = 0;
 	public static final int play = 1;
 	public static final int credits = 2;
@@ -27,6 +27,7 @@ public class Game extends StateBasedGame{
 		this.getState(play).init(gc, this);
 		this.getState(credits).init(gc, this);
 		this.getState(help).init(gc, this);
+		this.getState(play1).init(gc, this);
 		this.enterState(menu);
 	}
 	

@@ -23,7 +23,7 @@ public class Menu extends BasicGameState{
 		creditsButton = new Image("res/btn/creditsButton.png");
 		helpButton = new Image("res/btn/helpButton.png");
 		exitButton = new Image("res/btn/exitButton.png");
-		background = new Image("res/background.png");
+		background = new Image("res/backgrounds/background.png");
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
@@ -46,13 +46,13 @@ public class Menu extends BasicGameState{
 		//Check if user clicks credits button
 		if(ypos > 180 && ypos < 230 && xpos > 360 && xpos < 510){
 			if(Mouse.isButtonDown(0)){
-				sbg.enterState(2);
+				sbg.enterState(1);
 			}
 		}
 		//Check if user clicks play button
 		if(ypos > 270 && ypos < 320 && xpos > 360 && xpos < 510){
 			if(Mouse.isButtonDown(0)){
-				sbg.enterState(1);
+				sbg.enterState(4);
 			}
 		}
 	}
