@@ -11,7 +11,7 @@ public class Game extends StateBasedGame{
 	public static final int play = 1;
 	public static final int credits = 2;
 	public static final int help = 3;
-	public static final int settings = 4;
+	public static final int play1 = 4;
 	
 	public Game(String gameName) throws SlickException{
 		super(gameName);
@@ -19,6 +19,7 @@ public class Game extends StateBasedGame{
 		this.addState(new Play(play));
 		this.addState(new Credits(credits));
 		this.addState(new Help(help));
+		this.addState(new Play1(play1));
 	}
 	
 	public void initStatesList(GameContainer gc) throws SlickException {

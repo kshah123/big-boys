@@ -2,12 +2,18 @@ package game;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
-import org.lwjgl.input.*;
 
-public class Play extends BasicGameState{
+public class Play1 extends BasicGameState {
+
+	Animation penai, movingUp, movingDown, movingLeft, movingRight;
+	Image lvlOneMap;
+	int [] duration = {200,200};
+	float penaiPosX = 0;
+	float penaiPosY = 0;
+	float shiftX = penaiPosX + 270;
+	float shiftY = penaiPosY + 180;
 	
-	
-	public Play(int state){
+	public Play1(int state){
 		
 	}
 	
@@ -23,7 +29,6 @@ public class Play extends BasicGameState{
 	}
 
 	public int getID() {
-		return 1;
+		return 4;
 	}
-
 }
