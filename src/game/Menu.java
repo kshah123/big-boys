@@ -28,28 +28,29 @@ public class Menu extends BasicGameState{
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		g.drawImage(background, 0, 0);
-		g.drawImage(startButton, 180, 60);
-		g.drawImage(creditsButton, 180, 150);
-		g.drawImage(exitButton, 180, 240);
+		g.drawImage(startButton, 360, 50);
+		g.drawImage(creditsButton, 360, 140);
+		g.drawImage(exitButton, 360, 230);
+		g.drawString("Big Boys: The Monty Adventure", 50, 100);
 	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		xpos = Mouse.getX();
 		ypos = Mouse.getY();
 		//Check if user clicks exit button
-		if(ypos > 60 && ypos < 120 && xpos >180 && xpos < 360){
+		if(ypos > 90 && ypos < 140 && xpos >360 && xpos < 510){
 			if(Mouse.isButtonDown(0)){
 				System.exit(0);
 			}
 		}
 		//Check if user clicks credits button
-		if(ypos > 150 && ypos < 210 && xpos > 180 && xpos < 360){
+		if(ypos > 180 && ypos < 230 && xpos > 360 && xpos < 510){
 			if(Mouse.isButtonDown(0)){
 				sbg.enterState(2);
 			}
 		}
 		//Check if user clicks play button
-		if(ypos > 240 && ypos < 300 && xpos > 180 && xpos < 360){
+		if(ypos > 270 && ypos < 320 && xpos > 360 && xpos < 510){
 			if(Mouse.isButtonDown(0)){
 				sbg.enterState(1);
 			}
