@@ -31,7 +31,7 @@ public class Menu extends BasicGameState{
 		g.drawImage(startButton, 360, 50);
 		g.drawImage(creditsButton, 360, 140);
 		g.drawImage(exitButton, 360, 230);
-		g.drawString("Big Boys: The Monty Adventure", 50, 100);
+		g.drawString("Big Boys: Penai, the Zone and the Plate", 50, 100);
 	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {

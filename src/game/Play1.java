@@ -5,14 +5,15 @@ import org.newdawn.slick.state.*;
 
 public class Play1 extends BasicGameState {
 
-	Animation penai, movingUp, movingDown, movingLeft, movingRight;
+	Animation penai, movingUp, movingDown, movingLeft, movingRight,  penaisFront, penaisBack, penaisLeft, penaisRight;
 	Image lvlOneMap;
+	Animation movingdog = new Animation();
 	int [] duration = {200,200};
 	float penaiPosX = 0;
 	float penaiPosY = 0;
 	float shiftX = penaiPosX + 270;
 	float shiftY = penaiPosY + 180;
-	
+	int lastKeyPressed;
 	public Play1(int state){
 		
 	}
@@ -23,21 +24,58 @@ public class Play1 extends BasicGameState {
 		Image[] walkDown = {new Image("res/sprites/penaisFront1.png"), new Image("res/sprites/penaisFront2.png")};
 		Image[] walkLeft = {new Image("res/sprites/penaisLeft1.png"), new Image("res/sprites/penaisLeft2.png")};
 		Image[] walkRight = {new Image("res/sprites/penaisRight1.png"), new Image("res/sprites/penaisRight2.png")};
-
-		movingUp = new Animation(walkUp, duration, false);
-		movingDown = new Animation(walkDown, duration, false);
-		movingLeft = new Animation(walkLeft, duration, false);
-		movingRight = new Animation(walkRight, duration, false);
+		Image[] front = {new Image("res/sprites/penaisFront.png")};
+		Image[] back = {new Image("res/sprites/penaisBack.png")};
+		Image[] left = {new Image("res/sprites/penaisLeft.png")};
+		Image[] right = {new Image("res/sprites/penaisRight.png")};
+		penaisFront = new Animation(front, 100);
+		penaisBack = new Animation(back, 100);
+		penaisLeft = new Animation(left, 100);
+		penaisRight = new Animation(right, 100);
+		movingUp = new Animation(walkUp, duration);
+		movingDown = new Animation(walkDown, duration);
+		movingLeft = new Animation(walkLeft, duration);
+		movingRight = new Animation(walkRight, duration);
 		penai = movingDown;
 
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics gfx) throws SlickException {
-		gfx.drawImage(lvlOneMap, 0, 0);
+		lvlOneMap.draw(penaiPosX, penaiPosY);
+		penai.draw(shiftX, shiftY);
+		gfx.drawString("X: "+ penaiPosX + "\nY: " + penaiPosY, 460, 20);
 	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-		
+		Input input = gc.getInput();
+		//up
+		if(input.isKeyDown(Input.KEY_W)){
+			penai = movingUp;
+			penaiPosY += delta * .15f;
+			lastKeyPressed = input.KEY_W;
+		}
+		if(lastKeyPressed == Input.KEY_W && !(input.isKeyDown(input.KEY_W))) penai = penaisBack;
+		//down
+		if(input.isKeyDown(Input.KEY_S)){
+			penai = movingDown;
+			penaiPosY -= delta *.15f;
+			lastKeyPressed = input.KEY_S;
+		}
+		if(lastKeyPressed == input.KEY_S && !(input.isKeyDown(input.KEY_S))) penai = penaisFront;
+		//left
+		if(input.isKeyDown(Input.KEY_A)){
+			penai = movingLeft;
+			penaiPosX += delta * .15f;
+			lastKeyPressed = input.KEY_A;
+		}
+		if(lastKeyPressed == input.KEY_A && !(input.isKeyDown(input.KEY_A))) penai = penaisLeft;
+		//right
+		if(input.isKeyDown(Input.KEY_D)){
+			penai = movingRight;
+			penaiPosX -= delta * .15f;
+			lastKeyPressed = input.KEY_D;
+		}
+		if(lastKeyPressed == input.KEY_D && !(input.isKeyDown(input.KEY_D))) penai = penaisRight;
 	}
 
 	public int getID() {
