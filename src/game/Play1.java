@@ -58,7 +58,12 @@ public class Play1 extends BasicGameState {
 		//up
 		if(input.isKeyDown(Input.KEY_W)){
 			penai = movingUp;
-			penaiPosY += delta * .15f;
+			if(input.isKeyDown(Input.KEY_D) || input.isKeyDown(Input.KEY_A))
+				penaiPosY += delta * .15f * .75;
+			else
+				penaiPosY += delta * .15f;
+			if(input.isKeyDown(Input.KEY_B))
+				penaiPosY += delta * .15f * .5;
 			antoninaPosY += delta * .15f;
 			lastKeyPressed = Input.KEY_W;
 			//top wall left side of bed
@@ -78,7 +83,12 @@ public class Play1 extends BasicGameState {
 		//down
 		if(input.isKeyDown(Input.KEY_S)){
 			penai = movingDown;
-			penaiPosY -= delta *.15f;
+			if(input.isKeyDown(Input.KEY_D) || input.isKeyDown(Input.KEY_A))
+				penaiPosY -= delta * .15f * .75;
+			else
+				penaiPosY -= delta * .15f;
+			if(input.isKeyDown(Input.KEY_B))
+				penaiPosY -= delta * .15f * .5;
 			antoninaPosY -= delta *.15f;
 			lastKeyPressed = Input.KEY_S;
 		}
@@ -86,7 +96,12 @@ public class Play1 extends BasicGameState {
 		//left
 		if(input.isKeyDown(Input.KEY_A)){
 			penai = movingLeft;
-			penaiPosX += delta * .15f;
+			if(input.isKeyDown(Input.KEY_D) || input.isKeyDown(Input.KEY_A))
+				penaiPosX += delta * .15f * .75;
+			else
+				penaiPosX += delta * .15f;
+			if(input.isKeyDown(Input.KEY_B))
+				penaiPosX += delta * .15f * .5;
 			antoninaPosX += delta * .15f;
 			lastKeyPressed = Input.KEY_A;
 			//right side of bed
@@ -98,7 +113,12 @@ public class Play1 extends BasicGameState {
 		//right
 		if(input.isKeyDown(Input.KEY_D)){
 			penai = movingRight;
-			penaiPosX -= delta * .15f;
+			if(input.isKeyDown(Input.KEY_D) || input.isKeyDown(Input.KEY_A))
+				penaiPosX -= delta * .15f * .75;
+			else
+				penaiPosX -= delta * .15f;
+			if(input.isKeyDown(Input.KEY_B))
+				penaiPosX -= delta * .15f * .5;
 			antoninaPosX -= delta * .15f;
 			lastKeyPressed = Input.KEY_D;
 			//left side of bed
