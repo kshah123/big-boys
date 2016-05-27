@@ -9,10 +9,10 @@ public class Play1 extends BasicGameState {
 	Image lvlOneMap;
 	Animation movingdog = new Animation();
 	int [] duration = {200,200};
-	float penaiPosX = 0;
-	float penaiPosY = 0;
-	float shiftX = penaiPosX + 270;
-	float shiftY = penaiPosY + 180;
+	float penaiPosX = 40;
+	float penaiPosY = 100;
+	float shiftX = penaiPosX + 540;
+	float shiftY = penaiPosY + 360;
 	int lastKeyPressed;
 	public Play1(int state){
 		
@@ -41,7 +41,7 @@ public class Play1 extends BasicGameState {
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics gfx) throws SlickException {
-		lvlOneMap.draw(penaiPosX, penaiPosY);
+		lvlOneMap.draw(penaiPosX - 5 , penaiPosY + 120);
 		penai.draw(shiftX, shiftY);
 		gfx.drawString("X: "+ penaiPosX + "\nY: " + penaiPosY, 460, 20);
 	}
@@ -53,6 +53,14 @@ public class Play1 extends BasicGameState {
 			penai = movingUp;
 			penaiPosY += delta * .15f;
 			lastKeyPressed = input.KEY_W;
+			//top wall left side of bed
+			if(penaiPosX < 267 && penaiPosX > 125 && penaiPosY > 224){
+				penaiPosY -= delta* .15f;
+			}
+			//top wall right side of bed
+			if(penaiPosX < -3 && penaiPosX > -85 && penaiPosY > 224){
+				penaiPosY -= delta* .15f;
+			}
 		}
 		if(lastKeyPressed == Input.KEY_W && !(input.isKeyDown(input.KEY_W))) penai = penaisBack;
 		//down
@@ -74,6 +82,14 @@ public class Play1 extends BasicGameState {
 			penai = movingRight;
 			penaiPosX -= delta * .15f;
 			lastKeyPressed = input.KEY_D;
+			//left side of bed
+			if(penaiPosY > 136 && penaiPosY < 225 && penaiPosX < 135){
+				penaiPosX += delta * .15f;
+			}
+			// right side wall
+			if(penaiPosY > 0 && penaiPosY < 235 && penaiPosX < -75){
+				penaiPosX += delta * .15f;
+			}
 		}
 		if(lastKeyPressed == input.KEY_D && !(input.isKeyDown(input.KEY_D))) penai = penaisRight;
 	}
