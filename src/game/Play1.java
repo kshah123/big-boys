@@ -5,10 +5,13 @@ import org.newdawn.slick.state.*;
 
 public class Play1 extends BasicGameState {
 
-	Animation penai, antoninaRight, antoninaLeft, movingUp, movingDown, movingLeft, movingRight,  penaisFront, penaisBack, penaisLeft, penaisRight;
+	Animation antonina, penai, antoninaRight, antoninaLeft, movingUp, movingDown, movingLeft, movingRight,  penaisFront, penaisBack, penaisLeft, penaisRight;
 	Image lvlOneMap;
 	Animation movingdog = new Animation();
 	int [] duration = {200,200};
+	int [] antoninaDuration = {400,400};
+	int antoninaMovementCounter = 0;
+	boolean movingright = true;
 	float penaiPosX = 0;
 	float penaiPosY = 0;
 	float antoninaPosX = penaiPosX + 420;
@@ -40,20 +43,39 @@ public class Play1 extends BasicGameState {
 		movingDown = new Animation(walkDown, duration);
 		movingLeft = new Animation(walkLeft, duration);
 		movingRight = new Animation(walkRight, duration);
-		antoninaRight = new Animation(antoninaRightImg, duration);
-		antoninaLeft = new Animation(antoninaLeftImg, duration);
+		antoninaRight = new Animation(antoninaRightImg, antoninaDuration);
+		antoninaLeft = new Animation(antoninaLeftImg, antoninaDuration);
 		penai = penaisFront;
+		antonina = antoninaRight;
 
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics gfx) throws SlickException {
 		lvlOneMap.draw(penaiPosX-41, penaiPosY+28);
 		penai.draw(shiftX, shiftY);
-		antoninaRight.draw(antoninaPosX, antoninaPosY);
+		antonina.draw(antoninaPosX, antoninaPosY);
 		gfx.drawString("X: "+ penaiPosX + "\nY: " + penaiPosY, 450, 20);
 	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+		//code for antonina bot
+		if(movingright == true){
+			antonina = antoninaRight;
+			antoninaPosX += delta *.05f;
+			antoninaMovementCounter++;
+			if(antoninaMovementCounter > 1500){
+				movingright = false;
+			} 
+		}
+		if(movingright == false){
+			antonina = antoninaLeft;
+			antoninaPosX -= delta * .05f;
+			antoninaMovementCounter--;
+			if(antoninaMovementCounter < 0){
+				movingright = true;
+			}
+		}
+		// code for movement
 		Input input = gc.getInput();
 		//up
 		if(input.isKeyDown(Input.KEY_W)){
@@ -69,6 +91,7 @@ public class Play1 extends BasicGameState {
 			//top wall left side of bed
 			if(penaiPosX < 267 && penaiPosX > 125 && penaiPosY > 224){
 				penaiPosY -= delta* .15f;
+				antoninaPosY -= delta * .15f;
 			}
 			//top wall right side of bed
 			if(penaiPosX < -4 && penaiPosX > -85 && penaiPosY > 222){
