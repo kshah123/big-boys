@@ -36,7 +36,7 @@ public class Play1 extends BasicGameState {
 		movingDown = new Animation(walkDown, duration);
 		movingLeft = new Animation(walkLeft, duration);
 		movingRight = new Animation(walkRight, duration);
-		penai = movingDown;
+		penai = penaisFront;
 
 	}
 
