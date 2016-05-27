@@ -2,6 +2,7 @@ package game;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
+import org.newdawn.slick.state.transition.*;
 import org.lwjgl.input.Mouse;
 
 public class Menu extends BasicGameState{
@@ -50,7 +51,7 @@ public class Menu extends BasicGameState{
 		//Check if user clicks play button
 		if(ypos > 5 && ypos < 82 && xpos > 40 && xpos < 260){
 			if(Mouse.isButtonDown(0)){
-				sbg.enterState(4);
+				sbg.enterState(4, new EmptyTransition(), new HorizontalSplitTransition());
 			}
 		}
 	}

@@ -9,8 +9,8 @@ public class Play1 extends BasicGameState {
 	Image lvlOneMap;
 	Animation movingdog = new Animation();
 	int [] duration = {200,200};
-	float penaiPosX = 40;
-	float penaiPosY = 100;
+	float penaiPosX = 0;
+	float penaiPosY = 0;
 	float shiftX = penaiPosX + 540;
 	float shiftY = penaiPosY + 360;
 	int lastKeyPressed;
@@ -41,9 +41,9 @@ public class Play1 extends BasicGameState {
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics gfx) throws SlickException {
-		lvlOneMap.draw(penaiPosX - 5 , penaiPosY + 120);
+		lvlOneMap.draw(penaiPosX-41, penaiPosY+28);
 		penai.draw(shiftX, shiftY);
-		gfx.drawString("X: "+ penaiPosX + "\nY: " + penaiPosY, 460, 20);
+		gfx.drawString("X: "+ penaiPosX + "\nY: " + penaiPosY, 450, 20);
 	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
@@ -52,38 +52,46 @@ public class Play1 extends BasicGameState {
 		if(input.isKeyDown(Input.KEY_W)){
 			penai = movingUp;
 			penaiPosY += delta * .15f;
-			lastKeyPressed = input.KEY_W;
+			lastKeyPressed = Input.KEY_W;
 			//top wall left side of bed
 			if(penaiPosX < 267 && penaiPosX > 125 && penaiPosY > 224){
 				penaiPosY -= delta* .15f;
 			}
 			//top wall right side of bed
-			if(penaiPosX < -3 && penaiPosX > -85 && penaiPosY > 224){
+			if(penaiPosX < -4 && penaiPosX > -85 && penaiPosY > 222){
+				penaiPosY -= delta* .15f;
+			}
+			//bottom of bed
+			if(penaiPosX < 110 && penaiPosX > 10 && penaiPosY > 120){
 				penaiPosY -= delta* .15f;
 			}
 		}
-		if(lastKeyPressed == Input.KEY_W && !(input.isKeyDown(input.KEY_W))) penai = penaisBack;
+		if(lastKeyPressed == Input.KEY_W && !(input.isKeyDown(Input.KEY_W))) penai = penaisBack;
 		//down
 		if(input.isKeyDown(Input.KEY_S)){
 			penai = movingDown;
 			penaiPosY -= delta *.15f;
-			lastKeyPressed = input.KEY_S;
+			lastKeyPressed = Input.KEY_S;
 		}
-		if(lastKeyPressed == input.KEY_S && !(input.isKeyDown(input.KEY_S))) penai = penaisFront;
+		if(lastKeyPressed == Input.KEY_S && !(input.isKeyDown(Input.KEY_S))) penai = penaisFront;
 		//left
 		if(input.isKeyDown(Input.KEY_A)){
 			penai = movingLeft;
 			penaiPosX += delta * .15f;
-			lastKeyPressed = input.KEY_A;
+			lastKeyPressed = Input.KEY_A;
+			//right side of bed
+			if(penaiPosY > 136 && penaiPosY < 260 && penaiPosX > -4 && penaiPosX < 136){
+				penaiPosX -= delta * .15f;
+			}
 		}
-		if(lastKeyPressed == input.KEY_A && !(input.isKeyDown(input.KEY_A))) penai = penaisLeft;
+		if(lastKeyPressed == Input.KEY_A && !(input.isKeyDown(Input.KEY_A))) penai = penaisLeft;
 		//right
 		if(input.isKeyDown(Input.KEY_D)){
 			penai = movingRight;
 			penaiPosX -= delta * .15f;
-			lastKeyPressed = input.KEY_D;
+			lastKeyPressed = Input.KEY_D;
 			//left side of bed
-			if(penaiPosY > 136 && penaiPosY < 225 && penaiPosX < 135){
+			if(penaiPosY > 124 && penaiPosY < 260 && penaiPosX < 136 && penaiPosX >133){
 				penaiPosX += delta * .15f;
 			}
 			// right side wall
@@ -91,7 +99,7 @@ public class Play1 extends BasicGameState {
 				penaiPosX += delta * .15f;
 			}
 		}
-		if(lastKeyPressed == input.KEY_D && !(input.isKeyDown(input.KEY_D))) penai = penaisRight;
+		if(lastKeyPressed == Input.KEY_D && !(input.isKeyDown(Input.KEY_D))) penai = penaisRight;
 	}
 
 	public int getID() {
