@@ -5,12 +5,14 @@ import org.newdawn.slick.state.*;
 
 public class Play1 extends BasicGameState {
 
-	Animation penai, movingUp, movingDown, movingLeft, movingRight,  penaisFront, penaisBack, penaisLeft, penaisRight;
+	Animation penai, antoninaRight, antoninaLeft, movingUp, movingDown, movingLeft, movingRight,  penaisFront, penaisBack, penaisLeft, penaisRight;
 	Image lvlOneMap;
 	Animation movingdog = new Animation();
 	int [] duration = {200,200};
 	float penaiPosX = 0;
 	float penaiPosY = 0;
+	float antoninaPosX = penaiPosX + 420;
+	float antoninaPosY = penaiPosY +410;
 	float shiftX = penaiPosX + 540;
 	float shiftY = penaiPosY + 360;
 	int lastKeyPressed;
@@ -28,6 +30,8 @@ public class Play1 extends BasicGameState {
 		Image[] back = {new Image("res/sprites/penaisBack.png")};
 		Image[] left = {new Image("res/sprites/penaisLeft.png")};
 		Image[] right = {new Image("res/sprites/penaisRight.png")};
+		Image[] antoninaRightImg = {new Image("res/sprites/antoninasRight1.png"), new Image("res/sprites/antoninasRight2.png")};
+		Image[] antoninaLeftImg = {new Image("res/sprites/antoninasLeft1.png"), new Image("res/sprites/antoninasLeft2.png")};
 		penaisFront = new Animation(front, 100);
 		penaisBack = new Animation(back, 100);
 		penaisLeft = new Animation(left, 100);
@@ -36,6 +40,8 @@ public class Play1 extends BasicGameState {
 		movingDown = new Animation(walkDown, duration);
 		movingLeft = new Animation(walkLeft, duration);
 		movingRight = new Animation(walkRight, duration);
+		antoninaRight = new Animation(antoninaRightImg, duration);
+		antoninaLeft = new Animation(antoninaLeftImg, duration);
 		penai = penaisFront;
 
 	}
@@ -43,6 +49,7 @@ public class Play1 extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics gfx) throws SlickException {
 		lvlOneMap.draw(penaiPosX-41, penaiPosY+28);
 		penai.draw(shiftX, shiftY);
+		antoninaRight.draw(antoninaPosX, antoninaPosY);
 		gfx.drawString("X: "+ penaiPosX + "\nY: " + penaiPosY, 450, 20);
 	}
 
@@ -52,6 +59,7 @@ public class Play1 extends BasicGameState {
 		if(input.isKeyDown(Input.KEY_W)){
 			penai = movingUp;
 			penaiPosY += delta * .15f;
+			antoninaPosY += delta * .15f;
 			lastKeyPressed = Input.KEY_W;
 			//top wall left side of bed
 			if(penaiPosX < 267 && penaiPosX > 125 && penaiPosY > 224){
@@ -71,6 +79,7 @@ public class Play1 extends BasicGameState {
 		if(input.isKeyDown(Input.KEY_S)){
 			penai = movingDown;
 			penaiPosY -= delta *.15f;
+			antoninaPosY -= delta *.15f;
 			lastKeyPressed = Input.KEY_S;
 		}
 		if(lastKeyPressed == Input.KEY_S && !(input.isKeyDown(Input.KEY_S))) penai = penaisFront;
@@ -78,6 +87,7 @@ public class Play1 extends BasicGameState {
 		if(input.isKeyDown(Input.KEY_A)){
 			penai = movingLeft;
 			penaiPosX += delta * .15f;
+			antoninaPosX += delta * .15f;
 			lastKeyPressed = Input.KEY_A;
 			//right side of bed
 			if(penaiPosY > 136 && penaiPosY < 260 && penaiPosX > -4 && penaiPosX < 136){
@@ -89,6 +99,7 @@ public class Play1 extends BasicGameState {
 		if(input.isKeyDown(Input.KEY_D)){
 			penai = movingRight;
 			penaiPosX -= delta * .15f;
+			antoninaPosX -= delta * .15f;
 			lastKeyPressed = Input.KEY_D;
 			//left side of bed
 			if(penaiPosY > 124 && penaiPosY < 260 && penaiPosX < 136 && penaiPosX >133){
