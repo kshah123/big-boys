@@ -2,6 +2,7 @@ package game;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
+import game.functions;
 
 public class Play1 extends BasicGameState {
 
@@ -154,6 +155,10 @@ public class Play1 extends BasicGameState {
 			}
 		}
 		if(lastKeyPressed == Input.KEY_D && !(input.isKeyDown(Input.KEY_D))) penai = penaisRight;
+		//pause menu
+		if(input.isKeyPressed(Input.KEY_ESCAPE)){
+			
+		}
 	}
 
 	public int getID() {
