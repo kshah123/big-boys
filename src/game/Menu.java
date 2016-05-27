@@ -46,7 +46,7 @@ public class Menu extends BasicGameState{
 		//Check if user clicks credits button
 		if(ypos > 180 && ypos < 230 && xpos > 360 && xpos < 510){
 			if(Mouse.isButtonDown(0)){
-				sbg.enterState(1);
+				sbg.enterState(2);
 			}
 		}
 		//Check if user clicks play button
