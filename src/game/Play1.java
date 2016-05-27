@@ -80,27 +80,29 @@ public class Play1 extends BasicGameState {
 		Input input = gc.getInput();
 		//up
 		if(input.isKeyDown(Input.KEY_W)){
-			penai = movingUp;
+		penai = movingUp;
 			if(input.isKeyDown(Input.KEY_D) || input.isKeyDown(Input.KEY_A))
 				penaiPosY += delta * .15f * .75;
 			else
 				penaiPosY += delta * .15f;
 			if(input.isKeyDown(Input.KEY_B))
-				penaiPosY += delta * .15f * .5;
+				penaiPosY += delta * .15f * .6;
 			antoninaPosY += delta * .15f;
 			lastKeyPressed = Input.KEY_W;
-			//top wall left side of bed
-			if(penaiPosX < 267 && penaiPosX > 125 && penaiPosY > 224){
-				penaiPosY -= delta* .15f;
-				antoninaPosY -= delta * .15f;
-			}
-			//top wall right side of bed
-			if(penaiPosX < -4 && penaiPosX > -85 && penaiPosY > 222){
+			//top wall
+			if(penaiPosY > 245){
 				penaiPosY -= delta* .15f;
 			}
+
 			//bottom of bed
 			if(penaiPosX < 110 && penaiPosX > 10 && penaiPosY > 120){
 				penaiPosY -= delta* .15f;
+			}
+			//bottom of table
+			if(penaiPosX < 483 && penaiPosX > 335 && penaiPosY < 35 && penaiPosY > -92){
+				penaiPosY -= delta * .15f * 1.2;
+				if(input.isKeyDown(Input.KEY_B))
+					penaiPosY -= delta * .15f * .6 * 1.2;
 			}
 		}
 		if(lastKeyPressed == Input.KEY_W && !(input.isKeyDown(Input.KEY_W))) penai = penaisBack;
@@ -112,46 +114,63 @@ public class Play1 extends BasicGameState {
 			else
 				penaiPosY -= delta * .15f;
 			if(input.isKeyDown(Input.KEY_B))
-				penaiPosY -= delta * .15f * .5;
+				penaiPosY -= delta * .15f * .6;
 			antoninaPosY -= delta *.15f;
-			lastKeyPressed = Input.KEY_S;
+			//top of table
+			if(penaiPosX < 483 && penaiPosX > 335 && penaiPosY < 35 && penaiPosY > -92){
+				penaiPosY += delta * .15f * 1.2;
+				if(input.isKeyDown(Input.KEY_B))
+					penaiPosY += delta * .15f * .6 * 1.2;
+			}
 		}
 		if(lastKeyPressed == Input.KEY_S && !(input.isKeyDown(Input.KEY_S))) penai = penaisFront;
 		//left
 		if(input.isKeyDown(Input.KEY_A)){
 			penai = movingLeft;
 			if(input.isKeyDown(Input.KEY_D) || input.isKeyDown(Input.KEY_A))
-				penaiPosX += delta * .15f * .75;
+				penaiPosX += delta * .15f * .75 * 1.2;
 			else
-				penaiPosX += delta * .15f;
+				penaiPosX += delta * .15f * 1.2;
 			if(input.isKeyDown(Input.KEY_B))
-				penaiPosX += delta * .15f * .5;
+				penaiPosX += delta * .15f * .6 * 1.2;
 			antoninaPosX += delta * .15f;
 			lastKeyPressed = Input.KEY_A;
+			//right side of table
+			if(penaiPosX < 483 && penaiPosX > 335 && penaiPosY < 35 && penaiPosY > -92){
+				penaiPosX -= delta * .15f * 1.2;
+				if(input.isKeyDown(Input.KEY_B))
+					penaiPosX -= delta * .15f * .6 * 1.2;
+			}
 			//right side of bed
 			if(penaiPosY > 136 && penaiPosY < 260 && penaiPosX > -4 && penaiPosX < 136){
-				penaiPosX -= delta * .15f;
+				penaiPosX -= delta * .15f * 1.2;
 			}
 		}
 		if(lastKeyPressed == Input.KEY_A && !(input.isKeyDown(Input.KEY_A))) penai = penaisLeft;
 		//right
 		if(input.isKeyDown(Input.KEY_D)){
-			penai = movingRight;
+						penai = movingRight;
 			if(input.isKeyDown(Input.KEY_D) || input.isKeyDown(Input.KEY_A))
-				penaiPosX -= delta * .15f * .75;
+				penaiPosX -= delta * .15f * .75 * 1.2;
 			else
-				penaiPosX -= delta * .15f;
+				penaiPosX -= delta * .15f * 1.2;
 			if(input.isKeyDown(Input.KEY_B))
-				penaiPosX -= delta * .15f * .5;
+				penaiPosX -= delta * .15f * .6 * 1.2;
 			antoninaPosX -= delta * .15f;
 			lastKeyPressed = Input.KEY_D;
 			//left side of bed
 			if(penaiPosY > 124 && penaiPosY < 260 && penaiPosX < 136 && penaiPosX >133){
-				penaiPosX += delta * .15f;
+				penaiPosX += delta * .15f * 1.2;
 			}
 			// right side wall
 			if(penaiPosY > 0 && penaiPosY < 235 && penaiPosX < -75){
-				penaiPosX += delta * .15f;
+				penaiPosX += delta * .15f * 1.2;
+			}
+			//left side of table
+			if(penaiPosX < 483 && penaiPosX > 335 && penaiPosY < 35 && penaiPosY > -92){
+				penaiPosX += delta * .15f * 1.2;
+				if(input.isKeyDown(Input.KEY_B))
+					penaiPosX += delta * .15f * .6 * 1.2;
 			}
 		}
 		if(lastKeyPressed == Input.KEY_D && !(input.isKeyDown(Input.KEY_D))) penai = penaisRight;
