@@ -7,7 +7,7 @@ import org.lwjgl.input.Mouse;
 
 public class Menu extends BasicGameState{
 	
-	Image logo, background, menuBar;
+	Image logo, menuBar;
 	int xpos;
 	int ypos;
 	
@@ -16,14 +16,12 @@ public class Menu extends BasicGameState{
 	}
 	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		background = new Image("res/backgrounds/background.png");
-		menuBar = new Image("res/backgrounds/menuBar.png");
+		menuBar = new Image("res/backgrounds/menuBarNew.jpeg");
 		logo = new Image("res/backgrounds/logo.png");
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		g.drawImage(background, 0, 0);
-		g.drawImage(menuBar, 0, 0);
+		menuBar.draw(0, 0);
 		g.drawImage(logo, 800, 40);
 	}
 
@@ -31,25 +29,25 @@ public class Menu extends BasicGameState{
 		xpos = Mouse.getX();
 		ypos = Mouse.getY();
 		//Check if user clicks help button
-		if(ypos > 5 && ypos < 82 && xpos > 590 && xpos < 820){
+		if(ypos > 30 && ypos < 70 && xpos > 540 && xpos < 785){
 			if(Mouse.isButtonDown(0)){
 				sbg.enterState(3);
 			}
 		}
 		//Check if user clicks exit button
-		if(ypos > 5 && ypos < 82 && xpos >830 && xpos < 1045){
+		if(ypos > 30 && ypos < 70 && xpos >800 && xpos < 1040){
 			if(Mouse.isButtonDown(0)){
 				System.exit(0);
 			}
 		}
 		//Check if user clicks credits button
-		if(ypos > 5 && ypos < 82 && xpos > 278 && xpos < 562){
+		if(ypos > 30 && ypos < 70 && xpos > 290 && xpos < 530){
 			if(Mouse.isButtonDown(0)){
 				sbg.enterState(2);
 			}
 		}
 		//Check if user clicks play button
-		if(ypos > 5 && ypos < 82 && xpos > 40 && xpos < 260){
+		if(ypos > 30 && ypos < 70 && xpos > 30 && xpos < 275){
 			if(Mouse.isButtonDown(0)){
 				sbg.enterState(4, new EmptyTransition(), new HorizontalSplitTransition());
 			}
