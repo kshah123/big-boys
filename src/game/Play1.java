@@ -9,9 +9,6 @@ public class Play1 extends BasicGameState {
 	//Images
 	Image lvlOneMap;
 	Image menuBackground;
-	//Animation durations
-	int [] duration = {200,200};
-	int [] antoninaDuration = {400,400};
 	//Counters
 	int antoninaMovementCounter = 0;
 	boolean movingright = true;
@@ -42,12 +39,16 @@ public class Play1 extends BasicGameState {
 		game.variables.penaisBack = new Animation(back, 100);
 		game.variables.penaisLeft = new Animation(left, 100);
 		game.variables.penaisRight = new Animation(right, 100);
-		game.variables.movingUp = new Animation(walkUp, duration);
-		game.variables.movingDown = new Animation(walkDown, duration);
-		game.variables.movingLeft = new Animation(walkLeft, duration);
-		game.variables.movingRight = new Animation(walkRight, duration);
-		antoninaRight = new Animation(antoninaRightImg, antoninaDuration);
-		antoninaLeft = new Animation(antoninaLeftImg, antoninaDuration);
+		game.variables.movingUp = new Animation(walkUp, game.variables.duration);
+		game.variables.movingDown = new Animation(walkDown, game.variables.duration);
+		game.variables.movingLeft = new Animation(walkLeft, game.variables.duration);
+		game.variables.movingRight = new Animation(walkRight, game.variables.duration);
+		game.variables.sprintingDown = new Animation(walkDown, game.variables.sprintDuration);
+		game.variables.sprintingUp = new Animation(walkUp, game.variables.sprintDuration);
+		game.variables.sprintingLeft = new Animation(walkLeft, game.variables.sprintDuration);
+		game.variables.sprintingRight = new Animation(walkRight, game.variables.sprintDuration);
+		antoninaRight = new Animation(antoninaRightImg, game.variables.antoninaDuration);
+		antoninaLeft = new Animation(antoninaLeftImg, game.variables.antoninaDuration);
 		game.variables.penai = game.variables.penaisFront;
 		antonina = antoninaRight;
 
@@ -70,7 +71,7 @@ public class Play1 extends BasicGameState {
 			antonina = antoninaRight;
 			game.variables.antoninaPosX += delta *.1f;
 			antoninaMovementCounter++;
-			if(antoninaMovementCounter > 1200){
+			if(antoninaMovementCounter > 1000){
 				movingright = false;
 			} 
 		}
@@ -86,8 +87,10 @@ public class Play1 extends BasicGameState {
 		// code for movement
 		Input input = gc.getInput();
 		game.functions.movement(delta, input);
-		game.functions.setCollision(input, delta, -120, 650, 230, 999, "up"); // top wall
-		game.functions.setCollision(input, delta, -80, -999, -120, 240, "right");
+		game.functions.setCollision(input, delta, -120, 650, 230, 999, "up");       //top wall
+		game.functions.setCollision(input, delta, -80, -75, -120, 230, "right");	//right wall
+		game.functions.setCollision(input, delta, 570, 999, -120, 999, "left");     //left wall
+		game.functions.setCollision(input, delta, -80, 570, -999, -115, "down");	//bottom wall
 		//pause menu
 		game.functions.menu(input);
 	}
