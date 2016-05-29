@@ -7,6 +7,7 @@ import org.lwjgl.input.Mouse;
 
 public class Menu extends BasicGameState{
 	
+	// Naming logo and menubar images and mouse positions 
 	Image logo, menuBar;
 	int xpos;
 	int ypos;
@@ -15,17 +16,21 @@ public class Menu extends BasicGameState{
 
 	}
 	
+	// Initializing images
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		menuBar = new Image("res/backgrounds/menuBarNew.jpeg");
 		logo = new Image("res/backgrounds/logo.png");
 	}
-
+	
+	// Draw images
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		menuBar.draw(0, 0);
 		g.drawImage(logo, 800, 40);
 	}
 
+	// Game loop
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+		// Get mouse positions
 		xpos = Mouse.getX();
 		ypos = Mouse.getY();
 		//Check if user clicks help button
@@ -53,7 +58,7 @@ public class Menu extends BasicGameState{
 			}
 		}
 	}
-
+	// Get State ID
 	public int getID() {
 		return 0;
 	}

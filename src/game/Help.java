@@ -4,7 +4,7 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
 public class Help extends BasicGameState{
-
+	
 	Image help;
 	
 	public Help(int state){
