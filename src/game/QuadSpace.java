@@ -11,7 +11,7 @@ public class QuadSpace {
 		y1 = ya;
 		y2 = yb;
 	}
-	public static void collide(Input i, int delta){
+	public void collide(Input i, int delta){
 		if(game.variables.penaiPosX > x1 && game.variables.penaiPosX < x2 && game.variables.penaiPosY > y1 && game.variables.penaiPosY < y2){
 			if(i.isKeyDown(Input.KEY_W)){
 				game.variables.penaiPosY -= .2f * delta;
@@ -28,7 +28,7 @@ public class QuadSpace {
 				if(i.isKeyDown(Input.KEY_B))
 					game.variables.penaiPosX -= .2f * delta;
 			}
-			if(i.isKeyDown(i.KEY_D)){
+			if(i.isKeyDown(Input.KEY_D)){
 				game.variables.penaiPosX += .2f * delta;
 				if(i.isKeyDown(Input.KEY_B))
 					game.variables.penaiPosX += .2f * delta;

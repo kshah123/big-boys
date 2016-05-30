@@ -61,7 +61,7 @@ public class Play1 extends BasicGameState {
 		antonina.draw(game.variables.antoninaPosX, game.variables.antoninaPosY);
 		menuBackground.draw(game.variables.menuPositionX, game.variables.menuPositionY);
 		// Drawing X and Y Positions
-		gfx.drawString("X: "+ game.variables.penaiPosX + "\nY: " + game.variables.penaiPosY, 450, 20);
+		gfx.drawString("X: "+ game.variables.penaiPosX + "\nY: " + game.variables.penaiPosY, 440, 20);
 	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
