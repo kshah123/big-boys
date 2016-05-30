@@ -15,18 +15,22 @@ public class Play1 extends BasicGameState {
 	//Positions
 	float shiftX = game.variables.penaiPosX + 540;
 	float shiftY = game.variables.penaiPosY + 360;
-	QuadSpace bottomwall, topwall, rightwall, leftwall, sink;
+	
+	QuadSpace topWall = new QuadSpace(-120,650,230,999);
+	QuadSpace bottomWall = new QuadSpace(-80, 655, -999, -115);
+	QuadSpace leftWall = new QuadSpace(582, 999, -120, 235);
+	QuadSpace rightWall = new QuadSpace(-80, -75, -120, 230);
+	QuadSpace table = new QuadSpace(336, 485, -85, 35);
+	QuadSpace kitchenTable = new QuadSpace(390, 600, 88, 190);
+	QuadSpace sink = new QuadSpace(465, 600, 207, 600);
+	QuadSpace fridge = new QuadSpace(270, 361, 197, 300);
+	QuadSpace leftPlant = new QuadSpace(523, 650, -120, -16);
 	
 	public Play1(int state){
 		
 	}
 	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		bottomwall = new QuadSpace(-80, 570, -115, -990);
-		topwall = new QuadSpace(-120,650,230,999);
-		rightwall = new QuadSpace(-75, -80, -120, 230);
-		leftwall = new QuadSpace(580, 600, -120, 240);
-		sink = new QuadSpace(465, 570, 200, 240);
 		// Images
 		menuBackground = new Image("res/backgrounds/menuBackground.png");
 		lvlOneMap = new Image("res/levelMap/lvlOneMap.png");
@@ -67,7 +71,7 @@ public class Play1 extends BasicGameState {
 		antonina.draw(game.variables.antoninaPosX, game.variables.antoninaPosY);
 		menuBackground.draw(game.variables.menuPositionX, game.variables.menuPositionY);
 		// Drawing X and Y Positions
-		gfx.drawString("X: "+ game.variables.penaiPosX + "\nY: " + game.variables.penaiPosY, 440, 20);
+		gfx.drawString("X: "+ game.variables.penaiPosX + "\nY: " + game.variables.penaiPosY, 450, 20);
 	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
@@ -93,15 +97,22 @@ public class Play1 extends BasicGameState {
 		// code for movement
 		Input input = gc.getInput();
 		game.functions.movement(delta, input);
-		//collision
-		topwall.collide(input, delta);
-		rightwall.collide(input, delta);
-		leftwall.collide(input, delta);
-		bottomwall.collide(input, delta);
+		QuadSpace mem = new QuadSpace((int)(game.variables.antoninaPosX) - 3, (int)(game.variables.antoninaPosX) + 3, (int)(game.variables.antoninaPosY)-2, (int)(game.variables.antoninaPosX)+2);
+		topWall.collide(input, delta);
+		bottomWall.collide(input, delta);
+		leftWall.collide(input, delta);
+		rightWall.collide(input, delta);
+		table.collide(input, delta);
+		kitchenTable.collide(input, delta);
 		sink.collide(input, delta);
+		fridge.collide(input, delta);
+		leftPlant.collide(input, delta);
+		mem.collide(input, delta);
+		
 		//pause menu
 		game.functions.menu(input);
 	}
+
 	public int getID() {
 		return 4;
 	}
