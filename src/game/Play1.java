@@ -87,7 +87,8 @@ public class Play1 extends BasicGameState {
 		// code for movement
 		Input input = gc.getInput();
 		game.functions.movement(delta, input);
-		game.functions.setCollision(input, delta, -120, 650, 230, 999, "up");       //top wall
+		QuadSpace topwall = new QuadSpace(-120,650,230,999);
+		topwall.collide(input, delta);
 		game.functions.setCollision(input, delta, -80, -75, -120, 230, "right");	//right wall
 		game.functions.setCollision(input, delta, 570, 999, -120, 999, "left");     //left wall
 		game.functions.setCollision(input, delta, -80, 570, -999, -115, "down");	//bottom wall
