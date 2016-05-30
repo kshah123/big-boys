@@ -11,78 +11,25 @@ public class functions {
 			game.variables.penai = game.variables.movingUp;
 			game.variables.penaiPosY += delta * .2f;
 			game.variables.antoninaPosY += delta * .2f;
-			if(input.isKeyDown(Input.KEY_A)){
-				game.variables.penaiPosY -= delta * .05f;
-				game.variables.penaiPosX -= delta * .05f;
-				game.variables.antoninaPosX -= delta * .05f;
-				game.variables.antoninaPosY -= delta * .05f;
-			}
-			if(input.isKeyDown(Input.KEY_D)){
-				game.variables.penaiPosY -= delta * .05f;
-				game.variables.penaiPosX += delta * .05f;
-				game.variables.antoninaPosX += delta * .05f;
-				game.variables.antoninaPosY -= delta * .05f;				
-			}
+			
 			if(input.isKeyDown(Input.KEY_B)){
 				game.variables.penai = game.variables.sprintingUp;
 				game.variables.penaiPosY += delta * .2f;
 				game.variables.antoninaPosY += delta * .2f;
-				if(input.isKeyDown(Input.KEY_A)){
-					game.variables.penai = game.variables.sprintingLeft;
-					game.variables.penaiPosY -= delta * .15f;
-					game.variables.penaiPosX -= delta * .15f;
-					game.variables.antoninaPosX -= delta * .15f;
-					game.variables.antoninaPosY -= delta * .15f;
-				}
-				if(input.isKeyDown(Input.KEY_D)){
-					game.variables.penai = game.variables.sprintingRight;
-					game.variables.penaiPosY -= delta * .15f;
-					game.variables.penaiPosX += delta * .15f;
-					game.variables.antoninaPosX += delta * .15f;
-					game.variables.antoninaPosY -= delta * .15f;				
-				}
 			}
 		}
-		if(game.variables.lastKeyPressed == Input.KEY_W && !(input.isKeyDown(Input.KEY_W)))game.variables.penai = game.variables.penaisBack;
-		if(input.isKeyDown(Input.KEY_S)){
+		else if(input.isKeyDown(Input.KEY_S)){
 			game.variables.lastKeyPressed = Input.KEY_S;
 			game.variables.penai = game.variables.movingDown;
 			game.variables.penaiPosY -= delta * .2f;
 			game.variables.antoninaPosY -= delta * .2f;
-			if(input.isKeyDown(Input.KEY_A)){
-				game.variables.penaiPosY += delta * .05f;
-				game.variables.penaiPosX -= delta * .05f;
-				game.variables.antoninaPosX -= delta * .05f;
-				game.variables.antoninaPosY += delta * .05f;
-			}
-			if(input.isKeyDown(Input.KEY_D)){
-				game.variables.penaiPosY += delta * .05f;
-				game.variables.penaiPosX += delta * .05f;
-				game.variables.antoninaPosX += delta * .05f;
-				game.variables.antoninaPosY += delta * .05f;				
-			}
 			if(input.isKeyDown(Input.KEY_B)){
 				game.variables.penai = game.variables.sprintingDown;
 				game.variables.penaiPosY -= delta * .2f;
 				game.variables.antoninaPosY -= delta * .2f;
-				if(input.isKeyDown(Input.KEY_A)){
-					game.variables.penai = game.variables.sprintingLeft;
-					game.variables.penaiPosY += delta * .1f;
-					game.variables.penaiPosX -= delta * .1f;
-					game.variables.antoninaPosX -= delta * .1f;
-					game.variables.antoninaPosY += delta * .1f;
-				}
-				if(input.isKeyDown(Input.KEY_D)){
-					game.variables.penai = game.variables.sprintingRight;
-					game.variables.penaiPosY += delta * .1f;
-					game.variables.penaiPosX += delta * .1f;
-					game.variables.antoninaPosX += delta * .1f;
-					game.variables.antoninaPosY += delta * .1f;				
-				}
 			}
 		}
-		if(game.variables.lastKeyPressed == Input.KEY_S && !(input.isKeyDown(Input.KEY_S)))game.variables.penai = game.variables.penaisFront;
-		if(input.isKeyDown(Input.KEY_A)){
+		else if(input.isKeyDown(Input.KEY_A)){
 			game.variables.lastKeyPressed = Input.KEY_A;
 			game.variables.penai = game.variables.movingLeft;
 			game.variables.penaiPosX += delta * .2f;
@@ -93,8 +40,7 @@ public class functions {
 				game.variables.antoninaPosX += delta * .2f;
 			}
 		}
-		if(game.variables.lastKeyPressed == Input.KEY_A && !(input.isKeyDown(Input.KEY_A)))game.variables.penai = game.variables.penaisLeft;
-		if(input.isKeyDown(Input.KEY_D)){
+		else if(input.isKeyDown(Input.KEY_D)){
 			game.variables.lastKeyPressed = Input.KEY_D;
 			game.variables.penai = game.variables.movingRight;
 			game.variables.penaiPosX -= delta * .2f;
@@ -105,6 +51,9 @@ public class functions {
 				game.variables.antoninaPosX -= delta * .2f;
 			}
 		}
+		if(game.variables.lastKeyPressed == Input.KEY_W && !(input.isKeyDown(Input.KEY_W)))game.variables.penai = game.variables.penaisBack;
+		if(game.variables.lastKeyPressed == Input.KEY_S && !(input.isKeyDown(Input.KEY_S)))game.variables.penai = game.variables.penaisFront;
+		if(game.variables.lastKeyPressed == Input.KEY_A && !(input.isKeyDown(Input.KEY_A)))game.variables.penai = game.variables.penaisLeft;
 		if(game.variables.lastKeyPressed == Input.KEY_D && !(input.isKeyDown(Input.KEY_D)))game.variables.penai = game.variables.penaisRight;
 	}
 	//menuBar
