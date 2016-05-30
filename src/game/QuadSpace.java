@@ -11,7 +11,7 @@ public class QuadSpace {
 		y1 = ya;
 		y2 = yb;
 	}
-	public int[] collide(int x, int y, Input i, int delta){
+	public  collide(int x, int y, Input i, int delta){
 		if(x > x1 && x < x2 && x > y1 && x < y2){
 			if(i.isKeyDown(i.KEY_W)){
 				y -= .2f * delta;
@@ -34,9 +34,7 @@ public class QuadSpace {
 					x += .2f * delta;
 			}
 		}
-		int[] newPoint = new int[2];
-		newPoint[0] = x;
-		newPoint[1] = y;
-		return newPoint; //contains new penai position
+		game.variables.penaiPosX = x;
+		game.variables.penaiPosY = y;
 	}
 }
