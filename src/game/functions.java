@@ -24,15 +24,18 @@ public class functions {
 				game.variables.antoninaPosY -= delta * .05f;				
 			}
 			if(input.isKeyDown(Input.KEY_B)){
+				game.variables.penai = game.variables.sprintingUp;
 				game.variables.penaiPosY += delta * .2f;
 				game.variables.antoninaPosY += delta * .2f;
 				if(input.isKeyDown(Input.KEY_A)){
+					game.variables.penai = game.variables.sprintingLeft;
 					game.variables.penaiPosY -= delta * .15f;
 					game.variables.penaiPosX -= delta * .15f;
 					game.variables.antoninaPosX -= delta * .15f;
 					game.variables.antoninaPosY -= delta * .15f;
 				}
 				if(input.isKeyDown(Input.KEY_D)){
+					game.variables.penai = game.variables.sprintingRight;
 					game.variables.penaiPosY -= delta * .15f;
 					game.variables.penaiPosX += delta * .15f;
 					game.variables.antoninaPosX += delta * .15f;
@@ -59,15 +62,18 @@ public class functions {
 				game.variables.antoninaPosY += delta * .05f;				
 			}
 			if(input.isKeyDown(Input.KEY_B)){
+				game.variables.penai = game.variables.sprintingDown;
 				game.variables.penaiPosY -= delta * .2f;
 				game.variables.antoninaPosY -= delta * .2f;
 				if(input.isKeyDown(Input.KEY_A)){
+					game.variables.penai = game.variables.sprintingLeft;
 					game.variables.penaiPosY += delta * .1f;
 					game.variables.penaiPosX -= delta * .1f;
 					game.variables.antoninaPosX -= delta * .1f;
 					game.variables.antoninaPosY += delta * .1f;
 				}
 				if(input.isKeyDown(Input.KEY_D)){
+					game.variables.penai = game.variables.sprintingRight;
 					game.variables.penaiPosY += delta * .1f;
 					game.variables.penaiPosX += delta * .1f;
 					game.variables.antoninaPosX += delta * .1f;
@@ -82,6 +88,7 @@ public class functions {
 			game.variables.penaiPosX += delta * .2f;
 			game.variables.antoninaPosX += delta * .2f;
 			if(input.isKeyDown(Input.KEY_B)){
+				game.variables.penai = game.variables.sprintingLeft;
 				game.variables.penaiPosX += delta * .2f;
 				game.variables.antoninaPosX += delta * .2f;
 			}
@@ -93,6 +100,7 @@ public class functions {
 			game.variables.penaiPosX -= delta * .2f;
 			game.variables.antoninaPosX -= delta * .2f;
 			if(input.isKeyDown(Input.KEY_B)){
+				game.variables.penai = game.variables.sprintingRight;
 				game.variables.penaiPosX -= delta * .2f;
 				game.variables.antoninaPosX -= delta * .2f;
 			}
@@ -101,18 +109,19 @@ public class functions {
 	}
 	//menuBar
 	public static void menu(Input i){
-		if(i.isKeyPressed(Input.KEY_ESCAPE) && game.variables.menuPositionX == 5000 && game.variables.menuPositionY == 5000){
+		if(i.isKeyPressed(Input.KEY_ESCAPE) && game.variables.menuPositionX == 2000 && game.variables.menuPositionY == 2000){
 			game.variables.menuPositionX = 20;
 			game.variables.menuPositionY = 20;
-		} else if(i.isKeyPressed(Input.KEY_ESCAPE) && game.variables.menuPositionX == 20 && game.variables.menuPositionY == 20){
-			game.variables.menuPositionX = 5000;
-			game.variables.menuPositionY = 5000;
+		}
+		if(i.isKeyPressed(Input.KEY_ESCAPE) && game.variables.menuPositionX == 20 && game.variables.menuPositionY == 20){
+			game.variables.menuPositionX = 2000;
+			game.variables.menuPositionY = 2000;
 		}
 	}
 	//setting collisions
 	//direction can be: "up", "down", "left", or "right"
 public static void setCollision(Input i, int delta, int xInitial, int xFinal, int yInitial, int yFinal, String direction){
-		if(i.isKeyDown(Input.KEY_W)){
+		if(direction.equals("up")){
 			if(game.variables.penaiPosX < xFinal && game.variables.penaiPosX > xInitial && game.variables.penaiPosY > yInitial &&game.variables.penaiPosY <yFinal){
 				game.variables.penaiPosY -= .2f * delta;
 				game.variables.antoninaPosY -= .2f * delta;
@@ -122,7 +131,7 @@ public static void setCollision(Input i, int delta, int xInitial, int xFinal, in
 				}
 			}
 		}	
-		if(i.isKeyDown(Input.KEY_S)){
+		if(direction.equals("down")){
 			if(game.variables.penaiPosX < xFinal && game.variables.penaiPosX > xInitial && game.variables.penaiPosY > yInitial && game.variables.penaiPosY < yFinal){
 				game.variables.penaiPosY += .2f * delta;
 				game.variables.antoninaPosY += .2f * delta;
@@ -132,7 +141,7 @@ public static void setCollision(Input i, int delta, int xInitial, int xFinal, in
 				}
 			}
 		}
-		if(i.isKeyDown(Input.KEY_A)){
+		if(direction.equals("left")){
 			if(game.variables.penaiPosX < xFinal && game.variables.penaiPosX > xInitial && game.variables.penaiPosY > yInitial && game.variables.penaiPosY < yFinal){
 				game.variables.penaiPosX -= .2f * delta;
 				game.variables.antoninaPosX -= .2f * delta;
@@ -142,7 +151,7 @@ public static void setCollision(Input i, int delta, int xInitial, int xFinal, in
 				}
 			}
 		}
-		if(i.isKeyDown(Input.KEY_D)){
+		if(direction.equals("right")){
 			if(game.variables.penaiPosX < xFinal && game.variables.penaiPosX > xInitial && game.variables.penaiPosY > yInitial && game.variables.penaiPosY < yFinal){
 				game.variables.penaiPosX += .2f * delta;
 				game.variables.antoninaPosX += .2f * delta;

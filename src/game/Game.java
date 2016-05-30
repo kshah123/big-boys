@@ -7,7 +7,7 @@ import org.lwjgl.input.*;
 public class Game extends StateBasedGame{
 	
 	// Name of game in title bar
-	public static final String gameName = "Never Lucky: A Big Boys Adventure";
+	public static final String gameName = "Big Boys: The Plate";
 	
 	// List of states:
 	public static final int menu = 0;

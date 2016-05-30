@@ -1,6 +1,8 @@
 package game;
 
 import org.newdawn.slick.*;
+import org.newdawn.slick.openal.Audio;
+import org.newdawn.slick.openal.AudioLoader;
 import org.newdawn.slick.state.*;
 import org.newdawn.slick.state.transition.*;
 import org.lwjgl.input.Mouse;
@@ -20,6 +22,7 @@ public class Menu extends BasicGameState{
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		menuBar = new Image("res/backgrounds/menuBarNew.jpeg");
 		logo = new Image("res/backgrounds/logo.png");
+		AudioLoader al = new AudioLoader();
 	}
 	
 	// Draw images
@@ -36,7 +39,7 @@ public class Menu extends BasicGameState{
 		//Check if user clicks help button
 		if(ypos > 30 && ypos < 70 && xpos > 540 && xpos < 785){
 			if(Mouse.isButtonDown(0)){
-				sbg.enterState(3);
+				sbg.enterState(3, new FadeOutTransition(), new FadeInTransition());
 			}
 		}
 		//Check if user clicks exit button
@@ -48,7 +51,7 @@ public class Menu extends BasicGameState{
 		//Check if user clicks credits button
 		if(ypos > 30 && ypos < 70 && xpos > 290 && xpos < 530){
 			if(Mouse.isButtonDown(0)){
-				sbg.enterState(2);
+				sbg.enterState(2, new EmptyTransition(), new BlobbyTransition());
 			}
 		}
 		//Check if user clicks play button

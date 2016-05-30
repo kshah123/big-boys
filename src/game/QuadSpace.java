@@ -11,30 +11,28 @@ public class QuadSpace {
 		y1 = ya;
 		y2 = yb;
 	}
-	public  collide(int x, int y, Input i, int delta){
-		if(x > x1 && x < x2 && x > y1 && x < y2){
-			if(i.isKeyDown(i.KEY_W)){
-				y -= .2f * delta;
+	public void collide(Input i, int delta){
+		if(game.variables.penaiPosX > x1 && game.variables.penaiPosX < x2 && game.variables.penaiPosY > y1 && game.variables.penaiPosY < y2){
+			if(i.isKeyDown(Input.KEY_W)){
+				game.variables.penaiPosY -= .2f * delta;
 				if(i.isKeyDown(Input.KEY_B))
-					y -= .2f * delta;
+					game.variables.penaiPosY -= .2f * delta;
 			}
-			if(i.isKeyDown(i.KEY_S)){
-				y += .2f * delta;
+			if(i.isKeyDown(Input.KEY_S)){
+				game.variables.penaiPosY += .2f * delta;
 				if(i.isKeyDown(Input.KEY_B))
-					y += .2f * delta;
+					game.variables.penaiPosY += .2f * delta;
 			}
-			if(i.isKeyDown(i.KEY_A)){
-				x -= .2f * delta;
+			if(i.isKeyDown(Input.KEY_A)){
+				game.variables.penaiPosX -= .2f * delta;
 				if(i.isKeyDown(Input.KEY_B))
-					x -= .2f * delta;
+					game.variables.penaiPosX -= .2f * delta;
 			}
-			if(i.isKeyDown(i.KEY_D)){
-				x += .2f * delta;
+			if(i.isKeyDown(Input.KEY_D)){
+				game.variables.penaiPosX += .2f * delta;
 				if(i.isKeyDown(Input.KEY_B))
-					x += .2f * delta;
+					game.variables.penaiPosX += .2f * delta;
 			}
 		}
-		game.variables.penaiPosX = x;
-		game.variables.penaiPosY = y;
 	}
 }
