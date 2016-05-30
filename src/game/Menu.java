@@ -2,15 +2,13 @@ package game;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
+import org.newdawn.slick.state.transition.*;
 import org.lwjgl.input.Mouse;
 
 public class Menu extends BasicGameState{
 	
-	Image startButton;
-	Image creditsButton;
-	Image helpButton;
-	Image exitButton;
-	Image background;
+	// Naming logo and menubar images and mouse positions 
+	Image logo, menuBar;
 	int xpos;
 	int ypos;
 	
@@ -18,45 +16,49 @@ public class Menu extends BasicGameState{
 
 	}
 	
+	// Initializing images
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		startButton = new Image("res/btn/startButton.png");
-		creditsButton = new Image("res/btn/creditsButton.png");
-		helpButton = new Image("res/btn/helpButton.png");
-		exitButton = new Image("res/btn/exitButton.png");
-		background = new Image("res/backgrounds/background.png");
+		menuBar = new Image("res/backgrounds/menuBarNew.jpeg");
+		logo = new Image("res/backgrounds/logo.png");
 	}
-
+	
+	// Draw images
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		g.drawImage(background, 0, 0);
-		g.drawImage(startButton, 360, 50);
-		g.drawImage(creditsButton, 360, 140);
-		g.drawImage(exitButton, 360, 230);
-		g.drawString("Big Boys: Penai, the Zone and the Plate", 50, 100);
+		menuBar.draw(0, 0);
+		g.drawImage(logo, 800, 40);
 	}
 
+	// Game loop
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+		// Get mouse positions
 		xpos = Mouse.getX();
 		ypos = Mouse.getY();
+		//Check if user clicks help button
+		if(ypos > 30 && ypos < 70 && xpos > 540 && xpos < 785){
+			if(Mouse.isButtonDown(0)){
+				sbg.enterState(3);
+			}
+		}
 		//Check if user clicks exit button
-		if(ypos > 90 && ypos < 140 && xpos >360 && xpos < 510){
+		if(ypos > 30 && ypos < 70 && xpos >800 && xpos < 1040){
 			if(Mouse.isButtonDown(0)){
 				System.exit(0);
 			}
 		}
 		//Check if user clicks credits button
-		if(ypos > 180 && ypos < 230 && xpos > 360 && xpos < 510){
+		if(ypos > 30 && ypos < 70 && xpos > 290 && xpos < 530){
 			if(Mouse.isButtonDown(0)){
 				sbg.enterState(2);
 			}
 		}
 		//Check if user clicks play button
-		if(ypos > 270 && ypos < 320 && xpos > 360 && xpos < 510){
+		if(ypos > 30 && ypos < 70 && xpos > 30 && xpos < 275){
 			if(Mouse.isButtonDown(0)){
-				sbg.enterState(4);
+				sbg.enterState(4, new EmptyTransition(), new HorizontalSplitTransition());
 			}
 		}
 	}
-
+	// Get State ID
 	public int getID() {
 		return 0;
 	}
