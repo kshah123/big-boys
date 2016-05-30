@@ -15,12 +15,18 @@ public class Play1 extends BasicGameState {
 	//Positions
 	float shiftX = game.variables.penaiPosX + 540;
 	float shiftY = game.variables.penaiPosY + 360;
+	QuadSpace bottomwall, topwall, rightwall, leftwall, sink;
 	
 	public Play1(int state){
 		
 	}
 	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+		bottomwall = new QuadSpace(-80, 570, -115, -990);
+		topwall = new QuadSpace(-120,650,230,999);
+		rightwall = new QuadSpace(-75, -80, -120, 230);
+		leftwall = new QuadSpace(580, 600, -120, 240);
+		sink = new QuadSpace(465, 570, 200, 240);
 		// Images
 		menuBackground = new Image("res/backgrounds/menuBackground.png");
 		lvlOneMap = new Image("res/levelMap/lvlOneMap.png");
@@ -87,15 +93,15 @@ public class Play1 extends BasicGameState {
 		// code for movement
 		Input input = gc.getInput();
 		game.functions.movement(delta, input);
-		QuadSpace topwall = new QuadSpace(-120,650,230,999);
+		//collision
 		topwall.collide(input, delta);
-		game.functions.setCollision(input, delta, -80, -75, -120, 230, "right");	//right wall
-		game.functions.setCollision(input, delta, 570, 999, -120, 999, "left");     //left wall
-		game.functions.setCollision(input, delta, -80, 570, -999, -115, "down");	//bottom wall
+		rightwall.collide(input, delta);
+		leftwall.collide(input, delta);
+		bottomwall.collide(input, delta);
+		sink.collide(input, delta);
 		//pause menu
 		game.functions.menu(input);
 	}
-
 	public int getID() {
 		return 4;
 	}

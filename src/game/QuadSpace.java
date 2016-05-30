@@ -15,23 +15,35 @@ public class QuadSpace {
 		if(game.variables.penaiPosX > x1 && game.variables.penaiPosX < x2 && game.variables.penaiPosY > y1 && game.variables.penaiPosY < y2){
 			if(i.isKeyDown(Input.KEY_W)){
 				game.variables.penaiPosY -= .2f * delta;
-				if(i.isKeyDown(Input.KEY_B))
+				game.variables.antoninaPosY -= .2f * delta;
+				if(i.isKeyDown(Input.KEY_B)){
 					game.variables.penaiPosY -= .2f * delta;
+					game.variables.antoninaPosY -= .2f * delta;
+				}
 			}
 			if(i.isKeyDown(Input.KEY_S)){
 				game.variables.penaiPosY += .2f * delta;
-				if(i.isKeyDown(Input.KEY_B))
+				game.variables.antoninaPosY += .2f * delta;
+				if(i.isKeyDown(Input.KEY_B)){
 					game.variables.penaiPosY += .2f * delta;
+					game.variables.antoninaPosY += .2f * delta;
+				}
 			}
 			if(i.isKeyDown(Input.KEY_A)){
 				game.variables.penaiPosX -= .2f * delta;
-				if(i.isKeyDown(Input.KEY_B))
+				game.variables.antoninaPosX -= .2f * delta;
+				if(i.isKeyDown(Input.KEY_B)){
 					game.variables.penaiPosX -= .2f * delta;
+					game.variables.antoninaPosX -= .2f * delta;
+				}
 			}
 			if(i.isKeyDown(Input.KEY_D)){
 				game.variables.penaiPosX += .2f * delta;
-				if(i.isKeyDown(Input.KEY_B))
+				game.variables.penaiPosX += .2f * delta;
+				if(i.isKeyDown(Input.KEY_B)){
 					game.variables.penaiPosX += .2f * delta;
+					game.variables.antoninaPosX += .2f * delta;
+				}
 			}
 		}
 	}
