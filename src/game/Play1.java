@@ -17,8 +17,8 @@ public class Play1 extends BasicGameState {
 	float shiftY = game.variables.penaiPosY + 360;
 	
 	QuadSpace topWall = new QuadSpace(-120,650,230,999);
-	QuadSpace bottomWall = new QuadSpace(-80, 655, -999, -115);
-	QuadSpace leftWall = new QuadSpace(582, 999, -120, 235);
+	QuadSpace bottomWall = new QuadSpace(-100, 655, -999, -115);
+	QuadSpace leftWall = new QuadSpace(578, 999, -120, 235);
 	QuadSpace rightWall = new QuadSpace(-80, -75, -120, 230);
 	QuadSpace table = new QuadSpace(336, 485, -85, 35);
 	QuadSpace kitchenTable = new QuadSpace(390, 600, 88, 190);
