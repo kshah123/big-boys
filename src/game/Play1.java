@@ -25,6 +25,8 @@ public class Play1 extends BasicGameState {
 	QuadSpace sink = new QuadSpace(465, 600, 207, 600);
 	QuadSpace fridge = new QuadSpace(270, 361, 197, 300);
 	QuadSpace leftPlant = new QuadSpace(523, 650, -120, -16);
+	QuadSpace bed = new QuadSpace(-8, 125, 117, 400);
+	QuadSpace rightPlant = new QuadSpace(-200, -25, -250, -15);
 	
 	public Play1(int state){
 		
@@ -107,6 +109,8 @@ public class Play1 extends BasicGameState {
 		sink.collide(input, delta);
 		fridge.collide(input, delta);
 		leftPlant.collide(input, delta);
+		bed.collide(input, delta);
+		rightPlant.collide(input, delta);
 		mem.collide(input, delta);
 		
 		//pause menu

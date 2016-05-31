@@ -15,6 +15,7 @@ public class Game extends StateBasedGame{
 	public static final int credits = 2;
 	public static final int help = 3;
 	public static final int play1 = 4;
+	public static final int homeTown = 5;
 	
 	// Creating memory allocation for states
 	public Game(String gameName) throws SlickException{
@@ -24,6 +25,7 @@ public class Game extends StateBasedGame{
 		this.addState(new Credits(credits));
 		this.addState(new Help(help));
 		this.addState(new Play1(play1));
+		this.addState(new HomeTown(homeTown));
 	}
 	
 	// Initializing States into game
