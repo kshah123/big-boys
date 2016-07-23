@@ -2,12 +2,24 @@ package game;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 public class HomeTown extends BasicGameState{
+	Image lvlOneMap;
+	//Counters
+	//Positions
+	float shiftX = game.variables.penaiPosX + 540;
+	float shiftY = game.variables.penaiPosY + 360;
+	
+	QuadSpace penaiHouse = new QuadSpace(67,312,-118, 200); //Your house
+	QuadSpace kristinaHouse = new QuadSpace(-328,-93,-118,200); //Rival (Kristina) house
+	QuadSpace farrellLab = new QuadSpace(-357,-72,-416,-209); // Lab
+	QuadSpace fenceSign = new QuadSpace(82,297, -312,-262); //Fence and sign
 	public HomeTown(int state){
 		
 	}
 	
-	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
+	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		// TODO Auto-generated method stub
+		lvlOneMap = new Image("res/levelMap/homeTown.png");
+
 		Image[] walkUp = {new Image("res/sprites/penaisBack1.png"), new Image("res/sprites/penaisBack2.png")};
 		Image[] walkDown = {new Image("res/sprites/penaisFront1.png"), new Image("res/sprites/penaisFront2.png")};
 		Image[] walkLeft = {new Image("res/sprites/penaisLeft1.png"), new Image("res/sprites/penaisLeft2.png")};
@@ -31,25 +43,39 @@ public class HomeTown extends BasicGameState{
 		game.variables.sprintingLeft = new Animation(walkLeft, game.variables.sprintDuration);
 		game.variables.sprintingRight = new Animation(walkRight, game.variables.sprintDuration);
 		game.variables.penai = game.variables.penaisFront;
+		
+		
 
 	}
 
 	
-	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
+	public void render(GameContainer gc, StateBasedGame sbg, Graphics gfx) throws SlickException {
 		// TODO Auto-generated method stub
+		//Drawing map so that penai is in front of his house
+		lvlOneMap.draw(game.variables.penaiPosX+73, game.variables.penaiPosY+200);
+		game.variables.penai.draw(shiftX, shiftY);
+		// Drawing X and Y Positions
+		gfx.drawString("X: "+ game.variables.penaiPosX + "\nY: " + game.variables.penaiPosY, 450, 20);
 		
+
 	}
 
 	
-	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
+	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		// TODO Auto-generated method stub
-		
+		Input input = gc.getInput();
+		game.functions.movement(delta, input);
+		//collision functions
+		penaiHouse.collide(input, delta);
+		kristinaHouse.collide(input, delta);
+		farrellLab.collide(input, delta);
+		fenceSign.collide(input, delta);
 	}
 
 	
 	public int getID() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 5;
 	}
 
 }

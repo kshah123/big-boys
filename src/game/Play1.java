@@ -2,6 +2,7 @@ package game;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
+import org.newdawn.slick.state.transition.*;
 
 public class Play1 extends BasicGameState {
 	//Animations
@@ -17,7 +18,7 @@ public class Play1 extends BasicGameState {
 	float shiftY = game.variables.penaiPosY + 360;
 	
 	QuadSpace topWall = new QuadSpace(-120,650,230,999);
-	QuadSpace bottomWall = new QuadSpace(-100, 655, -999, -115);
+	QuadSpace bottomWall = new QuadSpace(-100, 655, -999, -125);
 	QuadSpace leftWall = new QuadSpace(578, 999, -120, 235);
 	QuadSpace rightWall = new QuadSpace(-80, -75, -120, 230);
 	QuadSpace table = new QuadSpace(336, 485, -85, 35);
@@ -27,6 +28,9 @@ public class Play1 extends BasicGameState {
 	QuadSpace leftPlant = new QuadSpace(523, 650, -120, -16);
 	QuadSpace bed = new QuadSpace(-8, 125, 117, 400);
 	QuadSpace rightPlant = new QuadSpace(-200, -25, -250, -15);
+	
+	public static final Color black = new Color(0,0,0);
+	public static final Color white = new Color(255,255,255);
 	
 	public Play1(int state){
 		
@@ -113,6 +117,9 @@ public class Play1 extends BasicGameState {
 		rightPlant.collide(input, delta);
 		mem.collide(input, delta);
 		
+		if(game.variables.penaiPosX > 209 && game.variables.penaiPosX < 295 && game.variables.penaiPosY < -124)
+			sbg.enterState(5, new FadeOutTransition(black), new EmptyTransition());
+			
 		//pause menu
 		game.functions.menu(input);
 	}

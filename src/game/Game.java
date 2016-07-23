@@ -35,6 +35,7 @@ public class Game extends StateBasedGame{
 		this.getState(credits).init(gc, this);
 		this.getState(help).init(gc, this);
 		this.getState(play1).init(gc, this);
+		this.getState(homeTown).init(gc, this);
 		this.enterState(menu);
 	}
 	
